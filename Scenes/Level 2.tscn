@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://kqp1e8vv3ebl"]
 
+[ext_resource type="Script" uid="uid://dm17vyvuds5kn" path="res://Scripts/LevelManager.gd" id="1_552vg"]
 [ext_resource type="Texture2D" uid="uid://b4w4iebkd87jn" path="res://top-down/Tilesheet/tilesheet_complete.png" id="1_fmc1q"]
-[ext_resource type="Script" uid="uid://crm030bthlexs" path="res://Scripts/level_2.gd" id="1_i7f56"]
 [ext_resource type="PackedScene" uid="uid://d3py2nf3b27bk" path="res://Scenes/Level 3.tscn" id="2_552vg"]
 [ext_resource type="PackedScene" uid="uid://6e1u5wcqnjij" path="res://Scenes/enemy_1.tscn" id="2_i7f56"]
 [ext_resource type="PackedScene" uid="uid://bce2w2ed0s7hq" path="res://Scenes/Player1.tscn" id="3_552vg"]
@@ -1005,8 +1005,9 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_vgl5k")
 
-[node name="Level 1" type="Node2D"]
-script = ExtResource("1_i7f56")
+[node name="Level 2" type="Node2D"]
+script = ExtResource("1_552vg")
+level_number = 2
 leveltochange = ExtResource("2_552vg")
 
 [node name="Green" type="TileMapLayer" parent="."]

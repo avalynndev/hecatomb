@@ -1,0 +1,157 @@
+[gd_scene load_steps=7 format=3 uid="uid://44wb56ghurrd"]
+
+[ext_resource type="Texture2D" uid="uid://8xgl2p1ulsev" path="res://StartSplash.png" id="1_8saeu"]
+[ext_resource type="FontFile" uid="uid://bp54llop4vyos" path="res://font/Fonts/Kenney Blocks.ttf" id="2_8saeu"]
+[ext_resource type="Texture2D" uid="uid://cdh6xhdg43d1a" path="res://StartMenu.png" id="3_8saeu"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ghw46"]
+load_path = "res://.godot/imported/OptionsMenu.png-dd6099df2669c8ef941b8d0ce8ad6fac.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_853f1"]
+modulate_color = Color(0.400698, 0.400698, 0.400698, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_853f1"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartSplash" type="Sprite2D" parent="."]
+position = Vector2(271, 338)
+texture = ExtResource("1_8saeu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(588, 315)
+scale = Vector2(0.459816, 0.411514)
+texture = SubResource("CompressedTexture2D_ghw46")
+region_rect = Rect2(0, 415.479, 1400.79, 925.521)
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_853f1")
+
+[node name="Heading" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -363.0
+offset_top = 118.0
+offset_right = 387.0
+offset_bottom = 298.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 60
+text = "Hecatomb"
+horizontal_alignment = 1
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 2
+offset_left = 474.0
+offset_top = 250.0
+offset_right = 682.0
+offset_bottom = 308.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_853f1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Start"]
+position = Vector2(105, 27)
+scale = Vector2(0.376361, 0.403292)
+texture = ExtResource("3_8saeu")
+region_enabled = true
+region_rect = Rect2(1396.19, 424.669, 643.297, 243.534)
+
+[node name="Label" type="Label" parent="Start"]
+layout_mode = 0
+offset_left = -63.0
+offset_top = -20.0
+offset_right = 272.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start2" type="Button" parent="."]
+layout_mode = 2
+offset_left = 477.0
+offset_top = 331.0
+offset_right = 682.0
+offset_bottom = 388.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_853f1")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D6" type="Sprite2D" parent="Start2"]
+position = Vector2(102, 26)
+scale = Vector2(0.376361, 0.403292)
+texture = ExtResource("3_8saeu")
+region_enabled = true
+region_rect = Rect2(1396.19, 424.669, 643.297, 243.534)
+
+[node name="Label2" type="Label" parent="Start2"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = -13.0
+offset_right = 221.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start3" type="Button" parent="."]
+layout_mode = 2
+offset_left = 479.0
+offset_top = 412.0
+offset_right = 683.0
+offset_bottom = 471.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_853f1")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Start3"]
+position = Vector2(101, 27)
+scale = Vector2(0.376361, 0.403292)
+texture = ExtResource("3_8saeu")
+region_enabled = true
+region_rect = Rect2(1396.19, 424.669, 643.297, 243.534)
+
+[node name="Label" type="Label" parent="Start3"]
+layout_mode = 0
+offset_left = -67.0
+offset_top = -16.0
+offset_right = 268.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2

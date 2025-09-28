@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://44wb56ghurrd"]
 
-[ext_resource type="Texture2D" uid="uid://8xgl2p1ulsev" path="res://StartSplash.png" id="1_8saeu"]
+[ext_resource type="Texture2D" uid="uid://beuywvhwbbarl" path="res://top-down/Sample.png" id="1_8um5k"]
 [ext_resource type="FontFile" uid="uid://bp54llop4vyos" path="res://font/Fonts/Kenney Blocks.ttf" id="2_8saeu"]
 [ext_resource type="Texture2D" uid="uid://cdh6xhdg43d1a" path="res://StartMenu.png" id="3_8saeu"]
 [ext_resource type="Script" uid="uid://xr7y2wja11nl" path="res://Scripts/start.gd" id="3_ghw46"]
@@ -45,9 +45,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_df05h")
 
-[node name="StartSplash" type="Sprite2D" parent="."]
-position = Vector2(271, 338)
-texture = ExtResource("1_8saeu")
+[node name="Sample" type="Sprite2D" parent="."]
+modulate = Color(0.355314, 0.355314, 0.355314, 1)
+position = Vector2(594, 313)
+scale = Vector2(1.53105, 1.66062)
+texture = ExtResource("1_8um5k")
+region_enabled = true
+region_rect = Rect2(0, 0, 918, 415.58)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -71,15 +75,34 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -363.0
-offset_top = 118.0
-offset_right = 387.0
-offset_bottom = 298.0
+offset_left = -375.0
+offset_top = 41.0
+offset_right = 375.0
+offset_bottom = 221.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_8saeu")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 100
 text = "Hecatomb"
 horizontal_alignment = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(579, 277)
+scale = Vector2(0.376361, 0.403292)
+texture = ExtResource("3_8saeu")
+region_enabled = true
+region_rect = Rect2(1396.19, 424.669, 643.297, 243.534)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 230.0
+offset_right = 746.0
+offset_bottom = 326.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Start" type="Button" parent="."]
 layout_mode = 2
@@ -91,22 +114,22 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxEmpty_853f1")
 script = ExtResource("3_ghw46")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Start"]
-position = Vector2(105, 27)
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(579, 357)
 scale = Vector2(0.376361, 0.403292)
 texture = ExtResource("3_8saeu")
 region_enabled = true
 region_rect = Rect2(1396.19, 424.669, 643.297, 243.534)
 
-[node name="Label" type="Label" parent="Start"]
+[node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = -63.0
-offset_top = -20.0
-offset_right = 272.0
-offset_bottom = 76.0
+offset_left = 458.0
+offset_top = 318.0
+offset_right = 698.0
+offset_bottom = 401.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
-text = "Start"
+text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -121,22 +144,22 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_853f1")
 script = ExtResource("5_8um5k")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D6" type="Sprite2D" parent="Options"]
-position = Vector2(102, 26)
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(580, 439)
 scale = Vector2(0.376361, 0.403292)
 texture = ExtResource("3_8saeu")
 region_enabled = true
 region_rect = Rect2(1396.19, 424.669, 643.297, 243.534)
 
-[node name="Label2" type="Label" parent="Options"]
+[node name="Label3" type="Label" parent="."]
 layout_mode = 0
-offset_left = -19.0
-offset_top = -13.0
-offset_right = 221.0
-offset_bottom = 70.0
+offset_left = 412.0
+offset_top = 396.0
+offset_right = 747.0
+offset_bottom = 492.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
-text = "Options"
+text = "Exit"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -151,35 +174,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_853f1")
 script = ExtResource("5_df05h")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D3" type="Sprite2D" parent="Exit"]
-position = Vector2(101, 27)
-scale = Vector2(0.376361, 0.403292)
-texture = ExtResource("3_8saeu")
-region_enabled = true
-region_rect = Rect2(1396.19, 424.669, 643.297, 243.534)
-
-[node name="Label" type="Label" parent="Exit"]
+[node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = -67.0
-offset_top = -16.0
-offset_right = 268.0
-offset_bottom = 80.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
-text = "Exit"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 40.0
+offset_bottom = 40.0

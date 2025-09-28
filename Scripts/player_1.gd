@@ -2,12 +2,14 @@ extends CharacterBody2D
 class_name Player
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var health: CanvasLayer = $Health
 
 @export var BULLET: PackedScene
 
 var direction: int = 0
 var heartslist: Array = []
 var playerhealth: int = 5
+
 
 func _ready() -> void:
 	# Pull health from GlobalManager (autoload)
@@ -68,3 +70,14 @@ func update_hearts_display() -> void:
 func _on_level_player_won() -> void:
 	set_process(false)
 	set_physics_process(false)
+
+
+func _on_level_lose_health() -> void:
+	if GlobalManager.player_health <= 0:
+		get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")
+	else:
+		GlobalManager.player_health -= 2
+		update_hearts_display()
+		
+func _on_level_lose_knowledge() -> void:
+	health.visible = false

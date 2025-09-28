@@ -10,7 +10,10 @@ var change_level: bool = false
 var player_health: int = 5
 var player_speed: int = 400
 
+
 signal  player_won()
+signal lose_knowledge()
+signal lose_health()
 
 func _ready() -> void:
 	current_lev = level_number
@@ -28,14 +31,19 @@ func change_level_after_delay() -> void:
 	await get_tree().create_timer(.0).timeout
 	get_tree().paused = false
 	current_lev += 1
-	print("Changing to level:", current_lev)
 	if leveltochange:
 		emit_signal("player_won")
 		DialogueManager.show_example_dialogue_balloon(load(sacrificedialogue), "start")
 	else:
-		print("No next level assigned!")
-		
+		pass
+
+func sac_knowledge():
+	emit_signal("lose_knowledge")
+
+func  sac_health():
+	emit_signal("lose_health")
+	
+
 func _finished():
-	print("finished")
 	get_tree().change_scene_to_packed(leveltochange)
 	

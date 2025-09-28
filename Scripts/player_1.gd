@@ -15,7 +15,7 @@ func _ready() -> void:
 	print("Loaded health:", playerhealth)
 	
 	if GlobalManager.player_health <= 0:
-		GlobalManager.player_health = 4
+		GlobalManager.player_health = 5
 	playerhealth = GlobalManager.player_health
 	print("Loaded health:", playerhealth)
 

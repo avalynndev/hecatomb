@@ -1047,4 +1047,4 @@ player = NodePath("../Player")
 position = Vector2(2336, 1024)
 player = NodePath("../Player")
 
-[connection signal="lose_knowledge" from="." to="Player" method="_on_level_lose_knowledge"]
+[connection signal="lose_health" from="." to="Player" method="_on_level_lose_health"]

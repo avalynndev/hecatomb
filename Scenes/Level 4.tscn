@@ -1038,3 +1038,6 @@ player = NodePath("../Player")
 [node name="Enemy4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_bfc4r")]
 position = Vector2(1218, 409)
 player = NodePath("../Player")
+
+[connection signal="lose_knowledge" from="." to="Player" method="_on_level_lose_knowledge"]
+[connection signal="player_won" from="." to="Player" method="_on_level_player_won"]

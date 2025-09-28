@@ -25,6 +25,10 @@ BgMusic="*res://Scenes/BGMusic.tscn"
 
 runtime/balloon_path="res:///balloon.tscn"
 
+[display]
+
+window/size/resizable=false
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")

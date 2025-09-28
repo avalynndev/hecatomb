@@ -49,7 +49,7 @@ func sac_speed():
 	emit_signal("lose_speed")
 	
 func sac_shoot_speed():
-	GlobalManager.bullet_player_speed *= 0.75
+	GlobalManager.bullet_player_speed *= 0.5
 
 func _finished():
 	get_tree().change_scene_to_packed(leveltochange)

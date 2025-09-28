@@ -24,8 +24,8 @@ script = ExtResource("1_hgvw1")
 
 [node name="Sample" type="Sprite2D" parent="."]
 modulate = Color(0.321728, 0.321728, 0.321728, 1)
-position = Vector2(594, 313)
-scale = Vector2(1.53105, 1.66062)
+position = Vector2(1081.86, 552.211)
+scale = Vector2(2.59392, 2.81344)
 texture = ExtResource("2_7mt03")
 region_enabled = true
 region_rect = Rect2(0, 0, 918, 415.58)

@@ -12,16 +12,15 @@ var playerhealth: int = 5
 
 
 func _ready() -> void:
-	# Pull health from GlobalManager (autoload)
 	playerhealth = GlobalManager.player_health
-	print("Loaded health:", playerhealth)
 	
 	if GlobalManager.player_health <= 0:
-		GlobalManager.player_health = 5
+		get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")
 	playerhealth = GlobalManager.player_health
-	print("Loaded health:", playerhealth)
 
-	# Collect all heart icons
+	if GlobalManager.knowledge_sacrificed:
+		health.visible = false
+	
 	var hearts_parent = $Health/Lives/Panel/HBoxContainer
 	heartslist.clear()
 	for child in hearts_parent.get_children():
@@ -76,8 +75,7 @@ func _on_level_lose_health() -> void:
 	if GlobalManager.player_health <= 0:
 		get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")
 	else:
-		GlobalManager.player_health -= 2
-		update_hearts_display()
+		_takeDamage(2)
 		
 func _on_level_lose_knowledge() -> void:
-	health.visible = false
+	GlobalManager.knowledge_sacrificed = true

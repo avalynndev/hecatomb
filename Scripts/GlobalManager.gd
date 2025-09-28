@@ -9,6 +9,7 @@ var current_lev: int = 1
 var change_level: bool = false
 var player_health: int = 5
 var player_speed: int = 400
+var knowledge_sacrificed : bool = false
 
 
 signal  player_won()

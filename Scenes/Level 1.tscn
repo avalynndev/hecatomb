@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://c75lm1d2elp6d" path="res://Scripts/GlobalManager.gd" id="1_rwcms"]
 [ext_resource type="PackedScene" uid="uid://kqp1e8vv3ebl" path="res://Scenes/Level 2.tscn" id="2_a2n4b"]
 [ext_resource type="PackedScene" uid="uid://bce2w2ed0s7hq" path="res://Scenes/Player1.tscn" id="2_lvv5c"]
-[ext_resource type="Resource" uid="uid://cjayxatkvlop3" path="res://Dialogues/Saclevel1.dialogue" id="3_a2n4b"]
+[ext_resource type="Resource" uid="uid://cjayxatkvlop3" path="res://Dialogues/SacLevel1.dialogue" id="3_a2n4b"]
 [ext_resource type="PackedScene" uid="uid://6e1u5wcqnjij" path="res://Scenes/enemy_1.tscn" id="3_vgl5k"]
 [ext_resource type="Texture2D" uid="uid://b4w4iebkd87jn" path="res://top-down/Tilesheet/tilesheet_complete.png" id="4_o30o5"]
+[ext_resource type="PackedScene" uid="uid://dmxvsqkv2iwa7" path="res://Scenes/vision.tscn" id="7_6jqpp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6jqpp"]
 texture = ExtResource("4_o30o5")
@@ -1007,9 +1008,6 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_d5td6")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwcms"]
-bg_color = Color(0, 0, 0, 0.596078)
-
 [node name="Level 1" type="Node2D"]
 script = ExtResource("1_rwcms")
 leveltochange = ExtResource("2_a2n4b")
@@ -1030,14 +1028,8 @@ player = NodePath("../Player")
 [node name="Player" parent="." instance=ExtResource("2_lvv5c")]
 position = Vector2(240, 474)
 
-[node name="Vision" type="Panel" parent="."]
+[node name="Vision" parent="." instance=ExtResource("7_6jqpp")]
 visible = false
-offset_left = -175.0
-offset_top = -215.0
-offset_right = 2556.0
-offset_bottom = 1493.0
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_rwcms")
 
 [connection signal="lose_health" from="." to="Player" method="_on_level_lose_health"]
 [connection signal="lose_knowledge" from="." to="Player" method="_on_level_lose_knowledge"]

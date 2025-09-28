@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://6e1u5wcqnjij" path="res://Scenes/enemy_1.tscn" id="2_i7f56"]
 [ext_resource type="PackedScene" uid="uid://bce2w2ed0s7hq" path="res://Scenes/Player1.tscn" id="3_552vg"]
 [ext_resource type="Resource" uid="uid://cl51qd63ng3hn" path="res://Dialogues/Saclevel2.dialogue" id="3_rxdjg"]
+[ext_resource type="PackedScene" uid="uid://dmxvsqkv2iwa7" path="res://Scenes/vision.tscn" id="7_m2mxc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwcms"]
 texture = ExtResource("1_fmc1q")
@@ -1006,9 +1007,6 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_vgl5k")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7f56"]
-bg_color = Color(0, 0, 0, 0.596078)
-
 [node name="Level 2" type="Node2D"]
 script = ExtResource("1_i7f56")
 level_number = 2
@@ -1034,14 +1032,8 @@ player = NodePath("../Player")
 position = Vector2(608, 785)
 player = NodePath("../Player")
 
-[node name="Vision" type="Panel" parent="."]
+[node name="Vision" parent="." instance=ExtResource("7_m2mxc")]
 visible = false
-offset_left = -175.0
-offset_top = -215.0
-offset_right = 2556.0
-offset_bottom = 1493.0
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_i7f56")
 
 [connection signal="lose_health" from="." to="Player" method="_on_level_lose_health"]
 [connection signal="lose_knowledge" from="." to="Player" method="_on_level_lose_knowledge"]

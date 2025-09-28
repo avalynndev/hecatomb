@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmxvsqkv2iwa7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7f56"]
+bg_color = Color(0, 0, 0, 0.596078)
+
+[node name="Vision" type="Panel"]
+offset_left = -175.0
+offset_top = -215.0
+offset_right = 2556.0
+offset_bottom = 1493.0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i7f56")

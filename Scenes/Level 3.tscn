@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b4w4iebkd87jn" path="res://top-down/Tilesheet/tilesheet_complete.png" id="2_o3aeh"]
 [ext_resource type="PackedScene" uid="uid://bce2w2ed0s7hq" path="res://Scenes/Player1.tscn" id="3_eqrfa"]
 [ext_resource type="PackedScene" uid="uid://6e1u5wcqnjij" path="res://Scenes/enemy_1.tscn" id="4_bdpyn"]
+[ext_resource type="PackedScene" uid="uid://dmxvsqkv2iwa7" path="res://Scenes/vision.tscn" id="4_js06r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwcms"]
 texture = ExtResource("2_o3aeh")
@@ -1003,9 +1004,6 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_vgl5k")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvlfr"]
-bg_color = Color(0, 0, 0, 0.596078)
-
 [node name="Level 3" type="Node2D"]
 
 [node name="Green" type="TileMapLayer" parent="."]
@@ -1027,11 +1025,5 @@ player = NodePath("../Player")
 position = Vector2(608, 785)
 player = NodePath("../Player")
 
-[node name="Vision" type="Panel" parent="."]
+[node name="Vision" parent="." instance=ExtResource("4_js06r")]
 visible = false
-offset_left = -175.0
-offset_top = -215.0
-offset_right = 2556.0
-offset_bottom = 1493.0
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yvlfr")

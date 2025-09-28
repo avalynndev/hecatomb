@@ -58,16 +58,13 @@ func _takeDamage(amount: int) -> void:
 		update_hearts_display()
 
 		if playerhealth <= 0:
-			print("Player shot and died.")
-			await anim_player.animation_finished
-			call_deferred("_go_to_game_over")
-
-func _go_to_game_over() -> void:
-	var tree := get_tree()
-	if tree:
-		tree.paused = false
-		tree.change_scene_to_file("res://Scenes/GameOver.tscn")
+			get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")
 
 func update_hearts_display() -> void:
 	for i in range(heartslist.size()):
 		heartslist[i].visible = i < playerhealth
+
+
+func _on_level_player_won() -> void:
+	set_process(false)
+	set_physics_process(false)

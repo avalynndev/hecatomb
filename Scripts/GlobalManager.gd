@@ -2,12 +2,15 @@ extends Node2D
 
 @export var level_number: int = 1
 @export var leveltochange: PackedScene
+@export var sacrificedialogue : String
 
 var level_cleared := false
 var current_lev: int = 1
 var change_level: bool = false
 var player_health: int = 5
 var player_speed: int = 400
+
+signal  player_won()
 
 func _ready() -> void:
 	current_lev = level_number
@@ -27,6 +30,12 @@ func change_level_after_delay() -> void:
 	current_lev += 1
 	print("Changing to level:", current_lev)
 	if leveltochange:
-		get_tree().change_scene_to_packed(leveltochange)
+		emit_signal("player_won")
+		DialogueManager.show_example_dialogue_balloon(load(sacrificedialogue), "start")
 	else:
 		print("No next level assigned!")
+		
+func _finished():
+	print("finished")
+	get_tree().change_scene_to_packed(leveltochange)
+	

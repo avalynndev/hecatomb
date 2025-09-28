@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://6kch2xb15k8b"]
+
+[ext_resource type="Script" uid="uid://5f8w8lu3jpul" path="res://Scripts/options.gd" id="1_hgvw1"]
+[ext_resource type="Texture2D" uid="uid://beuywvhwbbarl" path="res://top-down/Sample.png" id="2_7mt03"]
+[ext_resource type="FontFile" uid="uid://bp54llop4vyos" path="res://font/Fonts/Kenney Blocks.ttf" id="3_3rl6e"]
+
+[node name="Storyline" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hgvw1")
+
+[node name="Sample" type="Sprite2D" parent="."]
+modulate = Color(0.321728, 0.321728, 0.321728, 1)
+position = Vector2(594, 313)
+scale = Vector2(1.53105, 1.66062)
+texture = ExtResource("2_7mt03")
+region_enabled = true
+region_rect = Rect2(0, 0, 918, 415.58)
+
+[node name="Heading" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -375.0
+offset_top = 77.0
+offset_right = 375.0
+offset_bottom = 257.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_3rl6e")
+theme_override_font_sizes/font_size = 105
+text = "Story"
+horizontal_alignment = 1

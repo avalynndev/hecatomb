@@ -10,18 +10,12 @@
 script/source = "extends Control
 
 @export var level1_path: String = \"res://Scenes/Level 1.tscn\"
-@export var options_path: String = \"res://Scenes/Options.tscn\"
 
 # These names should match the functions created when you connect signals via the editor:
 func _on_StartButton_pressed() -> void:
 	var err = get_tree().change_scene_to_file(level1_path)
 	if err != OK:
 		push_error(\"Failed to change to scene: %s (err=%s)\" % [level1_path, str(err)])
-
-func _on_OptionsButton_pressed() -> void:
-	var err = get_tree().change_scene_to_file(options_path)
-	if err != OK:
-		push_error(\"Failed to change to scene: %s (err=%s)\" % [options_path, str(err)])
 
 func _on_ExitButton_pressed() -> void:
 	# Quits the running game (works for desktop). In editor this stops the running game instance.

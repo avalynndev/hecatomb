@@ -1,33 +1,31 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvg5nqf8cq800"]
+[gd_scene load_steps=8 format=3 uid="uid://bvg5nqf8cq800"]
 
 [ext_resource type="Texture2D" uid="uid://beuywvhwbbarl" path="res://top-down/Sample.png" id="1_rdiyk"]
-[ext_resource type="Script" uid="uid://xr7y2wja11nl" path="res://Scripts/start.gd" id="3_bfgkh"]
 [ext_resource type="Texture2D" uid="uid://cdh6xhdg43d1a" path="res://StartMenu.png" id="3_rdiyk"]
-[ext_resource type="Texture2D" uid="uid://b8iy4kvd1ubx8" path="res://GameOver.png" id="5_rdiyk"]
-[ext_resource type="Script" uid="uid://b0y8yqe84tvlu" path="res://Scripts/exit.gd" id="6_8710x"]
+[ext_resource type="FontFile" uid="uid://bp54llop4vyos" path="res://font/Fonts/Kenney Blocks.ttf" id="3_uib17"]
 
 [sub_resource type="GDScript" id="GDScript_df05h"]
 script/source = "extends Control
 
-@export var level1_path: String = \"res://Scenes/Level 1.tscn\"
 
-# These names should match the functions created when you connect signals via the editor:
-func _on_StartButton_pressed() -> void:
-	var err = get_tree().change_scene_to_file(level1_path)
-	if err != OK:
-		push_error(\"Failed to change to scene: %s (err=%s)\" % [level1_path, str(err)])
+func _on_restart_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Scenes/Level 1.tscn\")
+	GlobalManager.player_health = 5
 
-func _on_ExitButton_pressed() -> void:
-	# Quits the running game (works for desktop). In editor this stops the running game instance.
+func _on_exit_pressed() -> void:
 	get_tree().quit()
 "
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ghw46"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_853f1"]
 modulate_color = Color(0.400698, 0.400698, 0.400698, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_853f1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktc4i"]
+atlas = ExtResource("3_rdiyk")
+region = Rect2(1426, 463, 586, 194)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uib17"]
+atlas = ExtResource("3_rdiyk")
+region = Rect2(1426, 713, 587, 193)
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -38,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_df05h")
 
-[node name="Sample" type="Sprite2D" parent="."]
+[node name="BG" type="Sprite2D" parent="."]
 modulate = Color(0.355314, 0.355314, 0.355314, 1)
 position = Vector2(564.432, 340.6)
 scale = Vector2(1.46311, 1.76578)
@@ -46,12 +44,24 @@ texture = ExtResource("1_rdiyk")
 region_enabled = true
 region_rect = Rect2(0, 0, 918, 415.58)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(588, 315)
-scale = Vector2(0.459816, 0.411514)
-texture = SubResource("CompressedTexture2D_ghw46")
-region_rect = Rect2(0, 415.479, 1400.79, 925.521)
+[node name="Heading" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -482.5
+offset_top = -199.0
+offset_right = 482.5
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.820175, 0, 0.0891345, 1)
+theme_override_fonts/font = ExtResource("3_uib17")
+theme_override_font_sizes/font_size = 120
+text = "Game Over"
+horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
@@ -63,82 +73,57 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_853f1")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(579, 439)
-scale = Vector2(0.376361, 0.403292)
-texture = ExtResource("3_rdiyk")
-region_enabled = true
-region_rect = Rect2(1396.19, 424.669, 643.297, 243.534)
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -407.0
+offset_top = 358.0
+offset_right = 785.0
+offset_bottom = 552.0
+grow_horizontal = 2
+scale = Vector2(0.7, 0.7)
+theme_override_constants/separation = 20
+metadata/_edit_group_ = true
 
-[node name="Label" type="Label" parent="."]
+[node name="Restart" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_ktc4i")
+texture_hover = SubResource("AtlasTexture_uib17")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="HBoxContainer/Restart"]
 layout_mode = 0
-offset_left = 411.0
-offset_top = 392.0
-offset_right = 746.0
-offset_bottom = 488.0
+offset_left = -63.0
+offset_top = -20.0
+offset_right = 646.0
+offset_bottom = 196.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("3_uib17")
+theme_override_font_sizes/font_size = 70
 text = "Restart"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Restart" type="Button" parent="."]
+[node name="Exit" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
-offset_left = 474.0
-offset_top = 412.0
-offset_right = 682.0
-offset_bottom = 470.0
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxEmpty_853f1")
-script = ExtResource("3_bfgkh")
+texture_normal = SubResource("AtlasTexture_ktc4i")
+texture_hover = SubResource("AtlasTexture_uib17")
+metadata/_edit_group_ = true
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(580, 521)
-scale = Vector2(0.376361, 0.403292)
-texture = ExtResource("3_rdiyk")
-region_enabled = true
-region_rect = Rect2(1396.19, 424.669, 643.297, 243.534)
-
-[node name="Label2" type="Label" parent="."]
+[node name="Label" type="Label" parent="HBoxContainer/Exit"]
 layout_mode = 0
-offset_left = 412.0
-offset_top = 478.0
-offset_right = 747.0
-offset_bottom = 574.0
+offset_left = -63.0
+offset_top = -20.0
+offset_right = 646.0
+offset_bottom = 196.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("3_uib17")
+theme_override_font_sizes/font_size = 70
 text = "Exit"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Exit" type="Button" parent="."]
-layout_mode = 2
-offset_left = 479.0
-offset_top = 494.0
-offset_right = 683.0
-offset_bottom = 553.0
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxEmpty_853f1")
-script = ExtResource("6_8710x")
-metadata/_edit_group_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GameOver" type="Sprite2D" parent="."]
-position = Vector2(578, 248)
-scale = Vector2(0.37978, 0.337018)
-texture = ExtResource("5_rdiyk")
-region_enabled = true
-region_rect = Rect2(0, 0, 1203.37, 1063.85)
+[connection signal="pressed" from="HBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="HBoxContainer/Exit" to="." method="_on_exit_pressed"]

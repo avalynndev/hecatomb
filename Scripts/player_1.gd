@@ -92,4 +92,4 @@ func _on_level_lose_knowledge() -> void:
 
 func _on_level_lose_speed() -> void:
 	GlobalManager.player_speed -= 200
-	print(GlobalManager.player_speedwwww)
+	print(GlobalManager.player_speed)

@@ -1,39 +1,31 @@
-[gd_scene load_steps=11 format=3 uid="uid://44wb56ghurrd"]
+[gd_scene load_steps=7 format=3 uid="uid://44wb56ghurrd"]
 
 [ext_resource type="Texture2D" uid="uid://beuywvhwbbarl" path="res://top-down/Sample.png" id="1_8um5k"]
 [ext_resource type="FontFile" uid="uid://bp54llop4vyos" path="res://font/Fonts/Kenney Blocks.ttf" id="2_8saeu"]
 [ext_resource type="Texture2D" uid="uid://cdh6xhdg43d1a" path="res://StartMenu.png" id="3_8saeu"]
-[ext_resource type="Script" uid="uid://xr7y2wja11nl" path="res://Scripts/start.gd" id="3_ghw46"]
-[ext_resource type="Script" uid="uid://b0y8yqe84tvlu" path="res://Scripts/exit.gd" id="5_df05h"]
 
 [sub_resource type="GDScript" id="GDScript_df05h"]
 script/source = "extends Control
 
-@export var level1_path: String = \"res://Scenes/Level 1.tscn\"
-@export var storyline_path: String = \"res://Scenes/Storyline.tscn\"
 
-func _on_StartButton_pressed() -> void:
-	var err = get_tree().change_scene_to_file(level1_path)
-	if err != OK:
-		push_error(\"Failed to change to scene: %s (err=%s)\" % [level1_path, str(err)])
+func _on_start_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Scenes/Level 1.tscn\")
+	GlobalManager.player_health = 5
 
+func _on_story_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Scenes/Storyline.tscn\")
 	
-func _on_ExitButton_pressed() -> void:
+func _on_exit_pressed() -> void:
 	get_tree().quit()
-
-
-func _on_how_to_play_pressed() -> void:
-	get_tree().change_scene_to_file(storyline_path)
 "
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ghw46"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8saeu"]
+atlas = ExtResource("3_8saeu")
+region = Rect2(1426, 463, 586, 194)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_853f1"]
-modulate_color = Color(0.400698, 0.400698, 0.400698, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8um5k"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_853f1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghw46"]
+atlas = ExtResource("3_8saeu")
+region = Rect2(1426, 713, 587, 193)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -44,30 +36,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_df05h")
 
-[node name="Sample" type="Sprite2D" parent="."]
+[node name="BG" type="Sprite2D" parent="."]
 modulate = Color(0.355314, 0.355314, 0.355314, 1)
 position = Vector2(594, 313)
 scale = Vector2(1.53105, 1.66062)
 texture = ExtResource("1_8um5k")
 region_enabled = true
 region_rect = Rect2(0, 0, 918, 415.58)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(588, 315)
-scale = Vector2(0.459816, 0.411514)
-texture = SubResource("CompressedTexture2D_ghw46")
-region_rect = Rect2(0, 415.479, 1400.79, 925.521)
-
-[node name="Panel" type="Panel" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_853f1")
 
 [node name="Heading" type="Label" parent="."]
 layout_mode = 1
@@ -84,95 +59,75 @@ theme_override_font_sizes/font_size = 100
 text = "Hecatomb"
 horizontal_alignment = 1
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(579, 277)
-scale = Vector2(0.376361, 0.403292)
-texture = ExtResource("3_8saeu")
-region_enabled = true
-region_rect = Rect2(1396.19, 424.669, 643.297, 243.534)
-
-[node name="Start" type="Button" parent="."]
-layout_mode = 2
-offset_left = 474.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -425.0
 offset_top = 250.0
-offset_right = 682.0
-offset_bottom = 308.0
-theme_override_font_sizes/font_size = 50
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8um5k")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_853f1")
-script = ExtResource("3_ghw46")
-
-[node name="Sprite2D6" type="Sprite2D" parent="."]
-position = Vector2(579, 357)
-scale = Vector2(0.376361, 0.403292)
-texture = ExtResource("3_8saeu")
-region_enabled = true
-region_rect = Rect2(1396.19, 424.669, 643.297, 243.534)
-
-[node name="Storyline" type="Button" parent="."]
-layout_mode = 2
-offset_left = 477.0
-offset_top = 331.0
-offset_right = 682.0
-offset_bottom = 388.0
-theme_override_font_sizes/font_size = 50
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8um5k")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_853f1")
+offset_right = 797.0
+offset_bottom = 444.0
+grow_horizontal = 2
+scale = Vector2(0.7, 0.7)
+theme_override_constants/separation = 50
+alignment = 1
 metadata/_edit_group_ = true
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(580, 439)
-scale = Vector2(0.376361, 0.403292)
-texture = ExtResource("3_8saeu")
-region_enabled = true
-region_rect = Rect2(1396.19, 424.669, 643.297, 243.534)
-
-[node name="Exit" type="Button" parent="."]
+[node name="Start" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
-offset_left = 479.0
-offset_top = 412.0
-offset_right = 683.0
-offset_bottom = 471.0
-theme_override_font_sizes/font_size = 50
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8um5k")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_853f1")
-script = ExtResource("5_df05h")
+texture_normal = SubResource("AtlasTexture_8saeu")
+texture_hover = SubResource("AtlasTexture_ghw46")
 metadata/_edit_group_ = true
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="HBoxContainer/Start"]
 layout_mode = 0
-offset_left = 411.0
-offset_top = 230.0
-offset_right = 746.0
-offset_bottom = 326.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
+offset_right = 590.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 80
 text = "Start"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="."]
+[node name="Story" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_8saeu")
+texture_hover = SubResource("AtlasTexture_ghw46")
+metadata/_edit_group_ = true
+
+[node name="Story" type="Label" parent="HBoxContainer/Story"]
 layout_mode = 0
-offset_left = 458.0
-offset_top = 318.0
-offset_right = 698.0
-offset_bottom = 401.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
+offset_left = 10.0
+offset_right = 603.0
+offset_bottom = 189.0
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 80
 text = "Story"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="."]
+[node name="Exit" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 432.0
+offset_top = 392.0
+offset_right = 1018.0
+offset_bottom = 586.0
+scale = Vector2(0.5, 0.5)
+texture_normal = SubResource("AtlasTexture_8saeu")
+texture_hover = SubResource("AtlasTexture_ghw46")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Exit"]
 layout_mode = 0
-offset_left = 412.0
-offset_top = 396.0
-offset_right = 747.0
-offset_bottom = 492.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
+offset_right = 590.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 80
 text = "Exit"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="Storyline" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="HBoxContainer/Story" to="." method="_on_story_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bce2w2ed0s7hq"]
+[gd_scene load_steps=10 format=3 uid="uid://bce2w2ed0s7hq"]
 
 [ext_resource type="Script" uid="uid://cjlmdrpg363p0" path="res://Scripts/player_1.gd" id="1_n5fpy"]
 [ext_resource type="PackedScene" uid="uid://bnxjlc4wjt34y" path="res://Scenes/bullet_player.tscn" id="2_dvont"]
 [ext_resource type="Texture2D" uid="uid://dkbg7mq2f2p28" path="res://top-down/Spritesheet/spritesheet_characters.png" id="3_dvont"]
 [ext_resource type="PackedScene" uid="uid://c7mlgwepagcrh" path="res://Scenes/lives.tscn" id="4_1yta1"]
+[ext_resource type="AudioStream" uid="uid://52st8muppevs" path="res://sounds/Shoot.wav" id="5_2ale3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dvont"]
 height = 38.6667
@@ -74,5 +75,8 @@ libraries = {
 [node name="Health" type="CanvasLayer" parent="."]
 
 [node name="Lives" parent="Health" instance=ExtResource("4_1yta1")]
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2ale3")
 
 [connection signal="player_death" from="." to="." method="_on_player_death"]

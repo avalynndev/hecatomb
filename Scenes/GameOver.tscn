@@ -11,6 +11,9 @@ script/source = "extends Control
 func _on_restart_pressed() -> void:
 	get_tree().change_scene_to_file(\"res://Scenes/Level 1.tscn\")
 	GlobalManager.player_health = 5
+	GlobalManager.bullet_player_speed = 500
+	GlobalManager.player_speed = 400
+	GlobalManager.knowledge_sacrificed = false
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
@@ -57,7 +60,7 @@ offset_right = 482.5
 offset_bottom = -19.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.820175, 0, 0.0891345, 1)
+theme_override_colors/font_color = Color(0.774303, 0.119851, 0.369039, 1)
 theme_override_fonts/font = ExtResource("3_uib17")
 theme_override_font_sizes/font_size = 120
 text = "Game Over"
@@ -85,13 +88,11 @@ offset_bottom = 552.0
 grow_horizontal = 2
 scale = Vector2(0.7, 0.7)
 theme_override_constants/separation = 20
-metadata/_edit_group_ = true
 
 [node name="Restart" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_ktc4i")
 texture_hover = SubResource("AtlasTexture_uib17")
-metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="HBoxContainer/Restart"]
 layout_mode = 0
@@ -110,7 +111,6 @@ vertical_alignment = 1
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_ktc4i")
 texture_hover = SubResource("AtlasTexture_uib17")
-metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="HBoxContainer/Exit"]
 layout_mode = 0

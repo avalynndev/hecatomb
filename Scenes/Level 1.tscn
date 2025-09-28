@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bh4g1t6xbdb7o"]
+[gd_scene load_steps=11 format=4 uid="uid://bh4g1t6xbdb7o"]
 
 [ext_resource type="Script" uid="uid://c75lm1d2elp6d" path="res://Scripts/GlobalManager.gd" id="1_rwcms"]
 [ext_resource type="PackedScene" uid="uid://kqp1e8vv3ebl" path="res://Scenes/Level 2.tscn" id="2_a2n4b"]
@@ -6,8 +6,6 @@
 [ext_resource type="Resource" uid="uid://cjayxatkvlop3" path="res://Dialogues/Saclevel1.dialogue" id="3_a2n4b"]
 [ext_resource type="PackedScene" uid="uid://6e1u5wcqnjij" path="res://Scenes/enemy_1.tscn" id="3_vgl5k"]
 [ext_resource type="Texture2D" uid="uid://b4w4iebkd87jn" path="res://top-down/Tilesheet/tilesheet_complete.png" id="4_o30o5"]
-[ext_resource type="PackedScene" uid="uid://dmxvsqkv2iwa7" path="res://Scenes/vision.tscn" id="7_6jqpp"]
-[ext_resource type="PackedScene" uid="uid://bnxjlc4wjt34y" path="res://Scenes/bullet_player.tscn" id="8_ycu76"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6jqpp"]
 texture = ExtResource("4_o30o5")
@@ -1028,12 +1026,6 @@ player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("2_lvv5c")]
 position = Vector2(240, 474)
-
-[node name="Vision" parent="." instance=ExtResource("7_6jqpp")]
-visible = false
-
-[node name="bulletdecoy" parent="." instance=ExtResource("8_ycu76")]
-position = Vector2(-87, -47)
 
 [connection signal="lose_health" from="." to="Player" method="_on_level_lose_health"]
 [connection signal="lose_knowledge" from="." to="Player" method="_on_level_lose_knowledge"]

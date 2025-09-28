@@ -1,14 +1,10 @@
 extends Area2D
 
-var speed: int = 500
-
 func  _ready() -> void:
-		GlobalManager.lose_shoot_speed.connect(_on_lose_shoot_speed)
+	pass
 
 func _process(delta: float) -> void:
-
-	position += transform.x * speed * delta
-
+	position += transform.x * GlobalManager.bullet_player_speed * delta
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy:
@@ -17,6 +13,3 @@ func _on_body_entered(body: Node2D) -> void:
 		queue_free()
 	elif body is TileMapLayer:
 		queue_free()
-
-func _on_lose_shoot_speed():
-	speed = 210

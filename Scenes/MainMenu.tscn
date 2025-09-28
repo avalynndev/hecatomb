@@ -11,6 +11,9 @@ script/source = "extends Control
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file(\"res://Scenes/Level 1.tscn\")
 	GlobalManager.player_health = 5
+	GlobalManager.bullet_player_speed = 500
+	GlobalManager.player_speed = 400
+	GlobalManager.knowledge_sacrificed = false
 
 func _on_story_pressed() -> void:
 	get_tree().change_scene_to_file(\"res://Scenes/Storyline.tscn\")
@@ -72,13 +75,11 @@ grow_horizontal = 2
 scale = Vector2(0.7, 0.7)
 theme_override_constants/separation = 50
 alignment = 1
-metadata/_edit_group_ = true
 
 [node name="Start" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_8saeu")
 texture_hover = SubResource("AtlasTexture_ghw46")
-metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="HBoxContainer/Start"]
 layout_mode = 0
@@ -94,7 +95,6 @@ vertical_alignment = 1
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_8saeu")
 texture_hover = SubResource("AtlasTexture_ghw46")
-metadata/_edit_group_ = true
 
 [node name="Story" type="Label" parent="HBoxContainer/Story"]
 layout_mode = 0
@@ -116,7 +116,6 @@ offset_bottom = 586.0
 scale = Vector2(0.5, 0.5)
 texture_normal = SubResource("AtlasTexture_8saeu")
 texture_hover = SubResource("AtlasTexture_ghw46")
-metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="Exit"]
 layout_mode = 0

@@ -11,13 +11,13 @@ var player_health: int = 5
 var player_speed: int = 400
 var knowledge_sacrificed : bool = false
 var player_dead : bool = false
-
+var bullet_player_speed = 500
 
 signal player_won()
 signal lose_knowledge()
 signal lose_health()
 signal lose_speed()
-signal lose_shoot_speed()
+
 
 func _ready() -> void:
 	current_lev = level_number
@@ -49,7 +49,7 @@ func sac_speed():
 	emit_signal("lose_speed")
 	
 func sac_shoot_speed():
-	emit_signal("lose_shoot_speed")
+	GlobalManager.bullet_player_speed *= 0.75
 
 func _finished():
 	get_tree().change_scene_to_packed(leveltochange)

@@ -39,6 +39,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("shoot") and BULLET:
+		$Shoot.play()
 		var bullet = BULLET.instantiate()
 		get_tree().root.add_child(bullet)
 		bullet.global_position = global_position

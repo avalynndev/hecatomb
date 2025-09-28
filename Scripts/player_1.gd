@@ -3,7 +3,6 @@ class_name Player
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
-@export var speed: int = 400
 @export var BULLET: PackedScene
 
 var direction: int = 0
@@ -31,7 +30,7 @@ func _ready() -> void:
 	print("Collected hearts:", heartslist.size())
 	update_hearts_display()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("shoot") and BULLET:
 		var bullet = BULLET.instantiate()
 		get_tree().root.add_child(bullet)
@@ -40,13 +39,13 @@ func _process(delta: float) -> void:
 
 func get_input() -> void:
 	var input_direction = Input.get_vector("left", "right", "up", "down")
-	velocity = input_direction * speed
+	velocity = input_direction * GlobalManager.player_speed
 	if Input.is_action_pressed("left"):
 		direction = -1
 	elif Input.is_action_pressed("right"):
 		direction = 1
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	look_at(get_global_mouse_position())
 	get_input()
 	move_and_slide()

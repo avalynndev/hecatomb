@@ -74,3 +74,5 @@ libraries = {
 [node name="Health" type="CanvasLayer" parent="."]
 
 [node name="Lives" parent="Health" instance=ExtResource("4_1yta1")]
+
+[connection signal="player_death" from="." to="." method="_on_player_death"]

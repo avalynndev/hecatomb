@@ -3,6 +3,7 @@ class_name Player
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var health: CanvasLayer = $Health
+@onready var vision: Panel = $"../Vision"
 
 @export var BULLET: PackedScene
 
@@ -10,13 +11,19 @@ var direction: int = 0
 var heartslist: Array = []
 var playerhealth: int = 5
 
+signal player_death()
 
 func _ready() -> void:
 	playerhealth = GlobalManager.player_health
 	
-	if GlobalManager.player_health <= 0:
-		get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")
+	GlobalManager.player_dead = false
 	playerhealth = GlobalManager.player_health
+	
+	if GlobalManager.player_health <= 0:
+		GlobalManager.player_dead = true
+		emit_signal("player_death")
+		
+	
 
 	if GlobalManager.knowledge_sacrificed:
 		health.visible = false
@@ -37,6 +44,8 @@ func _process(_delta: float) -> void:
 		get_tree().root.add_child(bullet)
 		bullet.global_position = global_position
 		bullet.rotation = rotation
+	if GlobalManager.player_dead == true:
+		get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")
 
 func get_input() -> void:
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -59,7 +68,7 @@ func _takeDamage(amount: int) -> void:
 		update_hearts_display()
 
 		if playerhealth <= 0:
-			get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")
+			GlobalManager.player_dead = true
 
 func update_hearts_display() -> void:
 	for i in range(heartslist.size()):
@@ -72,10 +81,15 @@ func _on_level_player_won() -> void:
 
 
 func _on_level_lose_health() -> void:
-	if GlobalManager.player_health <= 0:
-		get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")
+	if GlobalManager.player_health < 1:
+		GlobalManager.player_dead = true
 	else:
-		_takeDamage(2)
+		_takeDamage(1)
 		
 func _on_level_lose_knowledge() -> void:
 	GlobalManager.knowledge_sacrificed = true
+
+
+func _on_level_lose_vision() -> void:
+	vision.visible = true
+	GlobalManager.vision = true

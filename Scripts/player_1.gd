@@ -90,6 +90,6 @@ func _on_level_lose_knowledge() -> void:
 	GlobalManager.knowledge_sacrificed = true
 
 
-func _on_level_lose_vision() -> void:
-	vision.visible = true
-	GlobalManager.vision = true
+func _on_level_lose_speed() -> void:
+	GlobalManager.player_speed -= 200
+	print(GlobalManager.player_speedwwww)

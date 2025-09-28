@@ -1028,6 +1028,7 @@ position = Vector2(608, 785)
 player = NodePath("../Player")
 
 [node name="Vision" type="Panel" parent="."]
+visible = false
 offset_left = -175.0
 offset_top = -215.0
 offset_right = 2556.0

@@ -1035,6 +1035,7 @@ position = Vector2(608, 785)
 player = NodePath("../Player")
 
 [node name="Vision" type="Panel" parent="."]
+visible = false
 offset_left = -175.0
 offset_top = -215.0
 offset_right = 2556.0
@@ -1044,5 +1045,5 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_i7f56")
 
 [connection signal="lose_health" from="." to="Player" method="_on_level_lose_health"]
 [connection signal="lose_knowledge" from="." to="Player" method="_on_level_lose_knowledge"]
-[connection signal="lose_vision" from="." to="Player" method="_on_level_lose_vision"]
+[connection signal="lose_speed" from="." to="Player" method="_on_level_lose_speed"]
 [connection signal="player_won" from="." to="Player" method="_on_level_player_won"]

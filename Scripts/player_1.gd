@@ -3,7 +3,6 @@ class_name Player
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var health: CanvasLayer = $Health
-@onready var vision: Panel = $"../Vision"
 
 @export var BULLET: PackedScene
 

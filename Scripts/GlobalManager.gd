@@ -3,7 +3,6 @@ extends Node2D
 @export var level_number: int = 1
 @export var leveltochange: PackedScene
 @export var sacrificedialogue : DialogueResource
-@onready var visionpanel: Panel = $Vision
 
 var level_cleared := false
 var current_lev: int = 1
@@ -12,21 +11,17 @@ var player_health: int = 5
 var player_speed: int = 400
 var knowledge_sacrificed : bool = false
 var player_dead : bool = false
-var vision_sac := false
+
 
 signal player_won()
 signal lose_knowledge()
 signal lose_health()
 signal lose_speed()
+signal lose_shoot_speed()
 
 func _ready() -> void:
 	current_lev = level_number
 	change_level = false
-	# Hide vision panel by default
-	if visionpanel:
-		visionpanel.visible = false
-	else:
-		push_error("Vision panel not found!")
 
 func _process(_delta: float) -> void:
 	if not level_cleared:
@@ -52,15 +47,9 @@ func sac_health():
 
 func sac_speed():
 	emit_signal("lose_speed")
-
-func sac_vision():
-	vision_sac = true
-	if visionpanel:
-		visionpanel.get_parent().remove_child(visionpanel)
-		get_tree().root.add_child(visionpanel)
-		visionpanel.top_level = true
-		visionpanel.visible = true
-		print("Vision panel is now permanent")
+	
+func sac_shoot_speed():
+	emit_signal("lose_shoot_speed")
 
 func _finished():
 	get_tree().change_scene_to_packed(leveltochange)

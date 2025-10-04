@@ -9,7 +9,7 @@
 
 [node name="Level 6" type="Node2D"]
 script = ExtResource("1_a1tav")
-level_number = 7
+level_number = 8
 leveltochange = ExtResource("2_6md15")
 sacrificedialogue = ExtResource("3_sa6ol")
 

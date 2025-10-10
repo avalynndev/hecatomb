@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bce2w2ed0s7hq"]
+[gd_scene load_steps=11 format=3 uid="uid://bce2w2ed0s7hq"]
 
 [ext_resource type="Script" uid="uid://cjlmdrpg363p0" path="res://Scripts/player_1.gd" id="1_n5fpy"]
 [ext_resource type="PackedScene" uid="uid://bnxjlc4wjt34y" path="res://Scenes/bullet_player.tscn" id="2_dvont"]
 [ext_resource type="Texture2D" uid="uid://dkbg7mq2f2p28" path="res://top-down/Spritesheet/spritesheet_characters.png" id="3_dvont"]
 [ext_resource type="PackedScene" uid="uid://c7mlgwepagcrh" path="res://Scenes/lives.tscn" id="4_1yta1"]
 [ext_resource type="AudioStream" uid="uid://52st8muppevs" path="res://sounds/Shoot.wav" id="5_2ale3"]
+[ext_resource type="PackedScene" uid="uid://d176k6appmcl5" path="res://Scenes/coinsHUD.tscn" id="5_i047d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dvont"]
 height = 38.6667
@@ -45,7 +46,7 @@ _data = {
 &"death": SubResource("Animation_dvont")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_n5fpy")
 BULLET = ExtResource("2_dvont")
 
@@ -75,6 +76,8 @@ libraries = {
 [node name="Health" type="CanvasLayer" parent="."]
 
 [node name="Lives" parent="Health" instance=ExtResource("4_1yta1")]
+
+[node name="Coins" parent="Health" instance=ExtResource("5_i047d")]
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_2ale3")

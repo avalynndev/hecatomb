@@ -1,17 +1,20 @@
 extends Node2D
 
-@export var level_number: int = 1
+@export var level_number: int
 @export var leveltochange: PackedScene
 @export var sacrificedialogue : DialogueResource
+@onready var total_coins = str(get_tree().get_nodes_in_group("coin").size())
 
 var level_cleared := false
-var current_lev: int = 1
 var change_level: bool = false
 var player_health: int = 5
 var player_speed: int = 400
 var knowledge_sacrificed : bool = false
 var player_dead : bool = false
 var bullet_player_speed = 500
+var coins_collected = 0
+
+
 
 signal player_won()
 signal lose_knowledge()
@@ -20,21 +23,28 @@ signal lose_speed()
 
 
 func _ready() -> void:
-	current_lev = level_number
-	change_level = false
+
+	level_cleared = false
 
 func _process(_delta: float) -> void:
-	if not level_cleared:
-		var enemies = get_tree().get_nodes_in_group("Enemy")
-		if enemies.is_empty() and not change_level:
-			level_cleared = true 
-			change_level_after_delay()
+	var enemies = get_tree().get_nodes_in_group("Enemy")
+	var coins = get_tree().get_nodes_in_group("coin")
+	
+	if level_number < 6:
+		if not level_cleared:
+			if enemies.is_empty():
+				level_cleared = true 
+				change_level_after_delay()
+	elif level_number > 5:
+		if not level_cleared:
+			if enemies.is_empty() and coins.is_empty():
+				level_cleared = true  
+				change_level_after_delay()
 
 func change_level_after_delay() -> void:
 	change_level = true
-	await get_tree().create_timer(0.0).timeout
+	await get_tree().create_timer(0.1).timeout
 	get_tree().paused = false
-	current_lev += 1
 	if leveltochange:
 		emit_signal("player_won")
 		DialogueManager.show_example_dialogue_balloon(sacrificedialogue, "start")

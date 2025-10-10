@@ -3,6 +3,9 @@ class_name Player
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var health: CanvasLayer = $Health
+@onready var coins: Control = $Health/Coins
+@onready var coins_text = $Health/Coins/Label
+@onready var gm = get_parent()
 
 @export var BULLET: PackedScene
 
@@ -14,6 +17,8 @@ signal player_death()
 
 func _ready() -> void:
 	playerhealth = GlobalManager.player_health
+	GlobalManager.coins_collected = 0
+	update_coins_display()
 	
 	GlobalManager.player_dead = false
 	playerhealth = GlobalManager.player_health
@@ -21,12 +26,11 @@ func _ready() -> void:
 	if GlobalManager.player_health <= 0:
 		GlobalManager.player_dead = true
 		emit_signal("player_death")
-		
-	
+
 
 	if GlobalManager.knowledge_sacrificed:
 		health.visible = false
-	
+
 	var hearts_parent = $Health/Lives/Panel/HBoxContainer
 	heartslist.clear()
 	for child in hearts_parent.get_children():
@@ -34,16 +38,22 @@ func _ready() -> void:
 			heartslist.append(child.get_node("Sprite2D"))
 		elif child is Sprite2D:
 			heartslist.append(child)
-	print("Collected hearts:", heartslist.size())
 	update_hearts_display()
 
 func _process(_delta: float) -> void:
+	update_coins_display()
 	if Input.is_action_just_pressed("shoot") and BULLET:
 		$Shoot.play()
 		var bullet = BULLET.instantiate()
 		get_tree().root.add_child(bullet)
 		bullet.global_position = global_position
 		bullet.rotation = rotation
+		
+	if gm.level_number < 6:
+		coins.visible = false
+	elif gm.level_number > 5:
+		coins.visible = true
+		
 	if GlobalManager.player_dead == true:
 		get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")
 
@@ -73,6 +83,12 @@ func _takeDamage(amount: int) -> void:
 func update_hearts_display() -> void:
 	for i in range(heartslist.size()):
 		heartslist[i].visible = i < playerhealth
+		
+func update_coins_display() -> void:
+	if GlobalManager.coins_collected != 0:
+		coins_text.text = str(GlobalManager.coins_collected) + " / " + str(gm.total_coins)
+	else:
+		coins_text.text = "0" + " / " + str(gm.total_coins)
 
 
 func _on_level_player_won() -> void:
@@ -92,4 +108,3 @@ func _on_level_lose_knowledge() -> void:
 
 func _on_level_lose_speed() -> void:
 	GlobalManager.player_speed -= 200
-	print(GlobalManager.player_speed)

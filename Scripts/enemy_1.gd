@@ -35,7 +35,7 @@ func  _takeDamage(amount: int):
 		animplayer.play("death")
 		if enemyhealth <= 0:
 			queue_free()
-			print("enemy shot")
+
 
 func shoot_bullet():
 	var bullet = ENEMYBULLET.instantiate()

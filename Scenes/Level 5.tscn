@@ -20,7 +20,7 @@ tile_set = ExtResource("4_a287m")
 [node name="Elements" type="TileMapLayer" parent="."]
 tile_set = ExtResource("4_a287m")
 
-[node name="Player" parent="." instance=ExtResource("2_v25lt")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("2_v25lt")]
 position = Vector2(216, 210)
 
 [node name="Enemy1" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_ptimm")]

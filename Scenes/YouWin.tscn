@@ -38,7 +38,7 @@ script = SubResource("GDScript_df05h")
 
 [node name="BG" type="Sprite2D" parent="."]
 modulate = Color(0.00351917, 0.00351917, 0.00351916, 1)
-position = Vector2(1016.43, 591.1)
+position = Vector2(580, 591.1)
 scale = Vector2(2.44786, 2.97301)
 texture = ExtResource("1_uthr7")
 region_enabled = true
